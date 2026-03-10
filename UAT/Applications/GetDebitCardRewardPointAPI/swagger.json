@@ -1,0 +1,192 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "GetDebitCardRewardPointAPI",
+    "version" : "1.0.0",
+    "description" : "GetDebitCardRewardPointAPI"
+  },
+  "paths" : {
+    "/get_enquiry" : {
+      "post" : {
+        "operationId" : "Get_enquiry",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/GetEnquiryResponse"
+            }
+          },
+          "500" : {
+            "description" : "Error Response",
+            "schema" : {
+              "$ref" : "#/definitions/errores"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a get_enquiry",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/GetEnquiryRequest"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/debitcard/rewardpoint/v1",
+  "definitions" : {
+    "getEnquiryReq" : {
+      "type" : "object",
+      "properties" : {
+        "requestId" : {
+          "type" : "string",
+          "description" : "Credit card number in encrypted format. Encryption logic will be shared.. "
+        },
+        "accountNumber" : {
+          "type" : "string",
+          "description" : "This is accountNumber"
+        },
+        "cardNumber" : {
+          "type" : "string",
+          "description" : "This is cardNumber"
+        },
+        "sourceId" : {
+          "type" : "string",
+          "description" : "This is sourceId"
+        }
+      }
+    },
+    "header" : {
+      "type" : "object",
+      "properties" : {
+        "requestUUID" : {
+          "type" : "string",
+          "description" : "This is requestUUID"
+        },
+        "channelId" : {
+          "type" : "string",
+          "description" : "This is channelId"
+        }
+      },
+      "required" : [ "requestUUID", "channelId" ]
+    },
+    "resheader" : {
+      "type" : "object",
+      "properties" : {
+        "requestUUID" : {
+          "type" : "string",
+          "description" : "This is requestUUID"
+        },
+        "channelId" : {
+          "type" : "string",
+          "description" : "This is channelId"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "This is status"
+        }
+      }
+    },
+    "GetEnquiryRequest" : {
+      "type" : "object",
+      "properties" : {
+        "request" : {
+          "type" : "object",
+          "properties" : {
+            "header" : {
+              "$ref" : "#/definitions/header"
+            },
+            "body" : {
+              "type" : "object",
+              "properties" : {
+                "getEnquiryReq" : {
+                  "$ref" : "#/definitions/getEnquiryReq"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "GetEnquiryResponse" : {
+      "type" : "object",
+      "properties" : {
+        "response" : {
+          "type" : "object",
+          "properties" : {
+            "header" : {
+              "$ref" : "#/definitions/resheader"
+            },
+            "body" : {
+              "type" : "object",
+              "properties" : {
+                "getEnquiryRes" : {
+                  "$ref" : "#/definitions/getEnquiryRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "errores" : {
+      "type" : "object",
+      "properties" : {
+        "response" : {
+          "type" : "object",
+          "properties" : {
+            "header" : {
+              "$ref" : "#/definitions/resheader"
+            },
+            "error" : {
+              "$ref" : "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "error" : {
+      "type" : "object",
+      "properties" : {
+        "errorCode" : {
+          "type" : "string",
+          "description" : "This is error Code"
+        },
+        "errorDesc" : {
+          "type" : "string",
+          "description" : "This is error Description"
+        }
+      }
+    },
+    "getEnquiryRes" : {
+      "type" : "object",
+      "properties" : {
+        "responseCode" : {
+          "type" : "string",
+          "description" : "This is responsecode "
+        },
+        "responseMsg" : {
+          "type" : "string",
+          "description" : "This is responseMsg"
+        },
+        "accountNumber" : {
+          "type" : "string",
+          "description" : "This is accountNumber"
+        },
+        "cardNumber" : {
+          "type" : "string",
+          "description" : "This is cardNumber"
+        },
+        "redeemablePoints" : {
+          "type" : "string",
+          "description" : "This is redeemablePoints"
+        }
+      }
+    }
+  }
+}
